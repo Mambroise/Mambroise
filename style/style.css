@@ -124,23 +124,46 @@ section{
     border-radius: 20px;
 }
 /* **************Services******** */
-.services{
+.section1{
     width: 90%;
-    display: flex;
+    height: 70vh;
+
 }
 .card{
-    width: 30%;
+    width: 45%;
     height: 80%;
     margin: auto;
     box-shadow: 0 0 10px;
 }
+#services .icon, #services .icon2{
+    margin: auto;
+    width: 50%;
+    height: 40%;
+    background: white;
+    overflow: hidden;
+}
+#services .icon img, #services .icon2 img{
+    border: 1px solid black;
+    border-radius: 100%;
+    width: 30%;
+    overflow: hidden;
+}
+#services .card .bg, #services .card .bg2{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    height: 80%;
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 1%;
+}
 /* ***********carte gauche************ */
-.services .card .bg{
+#services .card .bg{
     background-image: url('../img/office.jfif');
 
 }
 /* ***********carte droite************ */
-.services .card .bg2{
+#services .card .bg2{
     background-image: url('../img/ofMobile.jfif');
 }
 @media (max-width: 1500px){
