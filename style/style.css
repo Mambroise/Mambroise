@@ -1,0 +1,152 @@
+#start{
+    /* position: relative; */
+    text-align: center;
+    margin: 0;
+    background: rgb(18, 18, 18);
+    box-sizing: border-box;
+    color: rgb(71, 66, 66);
+}
+header{
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 0%;
+    
+}
+header .side{
+    width: 15%;
+    color: whitesmoke;
+}
+header .side h2{
+    border-bottom: 0.2px solid whitesmoke;
+    padding-bottom: 5px;
+}
+header nav{
+    background: whitesmoke;
+    width: 70%;
+    height: 60px;
+    margin: 0 5%;
+    display: flex;
+    justify-content: center;
+    border-radius: 0 0 1000% 1000%;
+    box-shadow: 0 0 10px ;
+}
+nav .navBar{
+    width: 55%;
+    border-bottom: 1px solid grey;
+    height: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.navBar ul{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 0px;
+}
+.navBar ul li, .navBar ul li a{
+    display: inline-block;
+    list-style: none;
+    text-decoration: none;
+    color: rgb(41, 40, 40);
+}
+.navBar ul li a:hover{
+    padding-top: 2px;
+    color: rgb(131, 42, 42);
+}
+.socials{
+    display: grid;
+    grid-template-rows: 2fr;
+    gap: 40px;
+   position: fixed;
+    left: 5%;
+    bottom: 5%;
+}
+.socials a img{
+    width: 50px;
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    animation-delay: 1.75s;
+    animation-iteration-count: 2;
+}
+.socials a img:nth-of-child(2n+1){
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    animation-delay: 2s;
+    animation-iteration-count: 2;
+    border-radius: 2px;
+}
+@keyframes bounce{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.5);
+        margin-bottom: 40px;
+    }
+    100%{
+        transform: scale(1);
+        margin-bottom: 0px;
+    }
+}
+
+
+/* *******************Main**************** */
+#container{
+    background: whitesmoke;
+    box-shadow: 0 0 5px whitesmoke;
+    width: 70%;
+    margin: auto;
+}
+section{
+    padding:  10% 0;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid rgb(71, 66, 66);
+}
+.accroche{
+    width: 50%;
+    padding-top: 15%;
+    font-size: 1.5em;
+    font-style: italic;
+    text-align: start;
+}
+.developpeur img{
+    width: 90%; 
+    border-radius: 3px;
+}
+.developpeur{
+    display: flex;
+    width: 100%;
+    background: beige;
+    border-radius: 20px;
+}
+.serveurs{
+
+}
+@media (max-width: 1500px){
+    .accroche {
+        font-size: 1em;
+    }
+    section{
+        width: 100%;
+    }
+
+}
+@media (max-width: 1100px){
+   .developpeur img{
+    width: 60%;
+   }
+    section{
+        width: 100%;
+    }
+
+}
+@media (max-width: 1000px){
+   nav .navBar{
+    width: 70%;
+   }
+}
+
