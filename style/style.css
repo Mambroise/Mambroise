@@ -124,9 +124,10 @@ section{
     border-radius: 20px;
 }
 /* **************Services******** */
-.section1{
+.section1{margin: auto;
     width: 90%;
     height: 70vh;
+    display: flex;
 
 }
 .card{
