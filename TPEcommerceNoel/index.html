@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPNoel</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="javascript/jquery-3.6.2.min.js"></script>
+    <script src="javascript/bootstrap.bundle.min.js"></script>
+    <script defer src="javascript/app.js"></script>
+    <script defer src="javascript/anime.js"></script>
+</head>
+<body>
+    <!-- ===========================NavBar========= -->
+    <!-- ===========================NavBar========= -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <button onclick="createCart()" class=" btn-primary position-relative" type="button" data-bs-toggle="offcanvas" 
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Voir la commande
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <!--=============================== ==========fenetre formulaire =======================================-->
+    
+      <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="staticBackdropLabel">Valider ma commande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>Veuillez entrer vos informations dans les champs ci-dessous :</p>
+          <div>
+           <form action="#" onsubmit="return false;">
+            <div class="formRow">
+                <label for="">Prénom</label>
+                <input type="text" name="prenom">
+                <p id="errorprenom" class="error"></p>
+            </div>
+            <div class="formRow">
+                <label for="">Nom</label>
+                <input type="text" name="nom">
+                <p id="errornom" class="error"></p>
+            </div>
+            <div class="formRow">
+                <label for="">Email</label>
+                <input type="text" name="email">
+                <p id="erroremail" class="error"></p>
+            </div>
+            <div class="formRow">
+                <label for="">N°Tel</label>
+                <input type="text" name="tel">
+                <p id="errortel" class="error"></p>
+            </div>
+            <div class="formRow">
+                <label for="">Adresse</label>
+                <input type="text" name="adresse">
+                <p id="erroradresse" class="error"></p>
+            </div>
+            <div id="formValid">
+
+              <!-- Button trigger modal -->
+              <button id="submit" value="enregistrer" type="button" class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle= "modal">
+                enregistrer</button>
+            </div>
+           </form>
+          </div>
+        </div>
+      </div>
+      <!-- Modal --> 
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title fs-5" id="exampleModalLabel">Valider mes informations et mon panier</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex">
+                <div class="col">
+                  <p>Prénom : <strong><span id="recapprenom"></span></strong></p>
+                  <p>Nom : <strong><span id="recapnom"></span></strong></p>
+                </div>
+                <div class="col">
+                  <p>Email : <strong><span id="recapemail"></span></strong></p>
+                  <p>Tel : <strong><span id="recaptel"></span></strong></p>
+                </div>
+              </div>
+                <p>Adresse : <strong><span id="recapadresse"></span></strong></p>
+                <h3>Votre Panier:</h3>
+              <div id="recapArt">
+
+              </div>
+              <div class="recapTotal">
+                <p>Total à régler: <strong><span class="cartPrice"></span></strong></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary recapClose" data-bs-dismiss="modal">Fermer</button>
+              <button id="final" type="button" class="btn btn-primary">Finaliser la commande et payer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--======================================fenetre panier=========== ============================================-->
+     
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Mon panier</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="offcanvasHead">
+            <img src="img/emptyCart.jfif" alt="caddy vide">
+            <p>Votre panier est tristement vide en ce moment</p>
+          </div>
+          <!--corps du panier-->
+            <div class="itemLocation">
+            </div>
+        </div>
+        </div>
+<!-- ==========================================hero page================================================ -->
+
+      <div class="balls">
+            <img src="img/boulesNoel2.png" alt="boules de Noel">
+            <div id="titre">
+                <h1 id="app"></h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row g-3">   
+            </div>
+        </div>
+</body>
+</html>

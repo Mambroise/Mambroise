@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RptFacture" language="groovy" pageWidth="226" pageHeight="623" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="68f003dc-2c89-4dae-8ba2-5ab27fc0057d">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="730"/>
+	<parameter name="commande_id" class="java.lang.Integer"/>
+	<parameter name="taxe" class="java.lang.String"/>
+	<parameter name="adresse" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     adresse.`rue` AS adresse_rue,
+     adresse.`cod_postal` AS adresse_cod_postal,
+     adresse.`ville` AS adresse_ville,
+     adresse.`complement` AS adresse_complement,
+     user.`nom` AS user_nom,
+     user.`prenom` AS user_prenom,
+     commande.`commentaire` AS commande_commentaire,
+     commande.`total` AS commande_total,
+     commande.`type_paiement` AS commande_type_paiement,
+     commande.`date_comm` AS commande_date_comm,
+     detail_commande.`quantite` AS detail_commande_quantite,
+     detail_commande.`prix_unitaire` AS detail_commande_prix_unitaire,
+     client.`nom` AS client_nom,
+     client.`prenom` AS client_prenom,
+     client.`numtel` AS client_numtel,
+     commande.`id` AS commande_id,
+     produit.`nom` AS produit_nom,
+     produit.`code` AS produit_code,
+     produit.`description` AS produit_description,
+     etablissement.`id` AS etablissement_id,
+     etablissement.`nom` AS etablissement_nom,
+     etablissement.`siret` AS etablissement_siret,
+     etablissement.`rue` AS etablissement_rue,
+     etablissement.`cod_postal` AS etablissement_cod_postal,
+     etablissement.`ville` AS etablissement_ville,
+     commande.`totalHt` AS commande_totalHt
+FROM
+     `user` user
+     INNER JOIN `commande` commande ON user.`id` = commande.`id_user`
+     INNER JOIN `detail_commande` detail_commande ON commande.`id` = detail_commande.`id_commande`
+     INNER JOIN `produit` produit ON detail_commande.`id_produit` = produit.`id`
+     INNER JOIN `client` client ON commande.`id_client` = client.`id`
+     INNER JOIN `adresse` adresse ON client.`id` = adresse.`id_client`
+     AND produit.`id` = detail_commande.`id_produit`,
+     `etablissement` etablissement
+WHERE
+     commande.`id` = $P{commande_id}
+AND adresse.`id` = $P{adresse}]]>
+	</queryString>
+	<field name="adresse_rue" class="java.lang.String"/>
+	<field name="adresse_cod_postal" class="java.lang.String"/>
+	<field name="adresse_ville" class="java.lang.String"/>
+	<field name="adresse_complement" class="java.lang.String"/>
+	<field name="user_nom" class="java.lang.String"/>
+	<field name="user_prenom" class="java.lang.String"/>
+	<field name="commande_commentaire" class="java.lang.String"/>
+	<field name="commande_total" class="java.lang.Double"/>
+	<field name="commande_type_paiement" class="java.lang.String"/>
+	<field name="commande_date_comm" class="java.sql.Timestamp"/>
+	<field name="detail_commande_quantite" class="java.lang.Integer"/>
+	<field name="detail_commande_prix_unitaire" class="java.lang.Double"/>
+	<field name="client_nom" class="java.lang.String"/>
+	<field name="client_prenom" class="java.lang.String"/>
+	<field name="client_numtel" class="java.lang.String"/>
+	<field name="commande_id" class="java.lang.Integer"/>
+	<field name="produit_nom" class="java.lang.String"/>
+	<field name="produit_code" class="java.lang.String"/>
+	<field name="produit_description" class="java.lang.String"/>
+	<field name="etablissement_id" class="java.lang.Integer"/>
+	<field name="etablissement_nom" class="java.lang.String"/>
+	<field name="etablissement_siret" class="java.lang.String"/>
+	<field name="etablissement_rue" class="java.lang.String"/>
+	<field name="etablissement_cod_postal" class="java.lang.String"/>
+	<field name="etablissement_ville" class="java.lang.String"/>
+	<field name="commande_totalHt" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135" splitType="Stretch">
+			<rectangle>
+				<reportElement x="100" y="0" width="86" height="25" uuid="77cfef10-e28c-4ee8-aa1a-a985efe583ae"/>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="125" width="186" height="1" uuid="bd51fa0a-6fd3-4ce1-b70f-121d0c6a1bad"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="109" y="5" width="74" height="20" uuid="47aafae8-9cab-4b5e-92d0-30271b47ab18"/>
+				<textFieldExpression><![CDATA[$F{commande_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="29" width="100" height="20" uuid="a8434ef5-6ed6-43e2-b01a-748c6b40a748"/>
+				<textFieldExpression><![CDATA[$F{etablissement_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="49" width="100" height="20" uuid="762b487a-3e73-4e6e-a3f4-f418e8c227b2"/>
+				<textFieldExpression><![CDATA[$F{etablissement_siret}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="71" width="100" height="20" uuid="7a1579ac-efaa-4505-9364-fc6ee1cbf9c0"/>
+				<textFieldExpression><![CDATA[$F{etablissement_rue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="91" width="42" height="20" uuid="16d8fe49-e7da-438f-8282-0da21147c3d9"/>
+				<textFieldExpression><![CDATA[$F{etablissement_cod_postal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="91" width="109" height="20" uuid="a026d236-7bc2-4c61-b01e-03f77cb98542"/>
+				<textFieldExpression><![CDATA[$F{etablissement_ville}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="5" width="100" height="20" uuid="9a0e3dbf-861c-4031-8876-f0563639e662"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° COMMANDE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="-15" width="100" height="20" uuid="6c022270-791e-4e40-b9cd-cf24eeb9de4b"/>
+				<textFieldExpression><![CDATA[$F{commande_date_comm}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="130" width="186" height="1" uuid="d77122fe-7340-4635-b635-27a6b78cfcb8"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="10" width="96" height="20" uuid="f1f05993-6467-4059-8957-11cb3da3909b"/>
+				<textFieldExpression><![CDATA[$F{client_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="10" width="96" height="20" uuid="0f9c0c9c-d6ee-47ab-8068-870653d6e06e"/>
+				<textFieldExpression><![CDATA[$F{client_prenom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="26" width="100" height="20" uuid="282c2751-3792-4dac-938c-5ed734e474d2"/>
+				<textFieldExpression><![CDATA[$F{client_numtel}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="13" y="20" width="117" height="20" uuid="3418d05e-c822-4aea-b658-1e9f97d14e84"/>
+				<textFieldExpression><![CDATA[$F{adresse_rue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="40" width="43" height="20" uuid="3c6c147a-1111-4636-b360-4bc03829eaef"/>
+				<textFieldExpression><![CDATA[$F{adresse_cod_postal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="40" width="74" height="20" uuid="ae0e2f8c-8e39-4e23-b21c-ad6f6166cdbf"/>
+				<textFieldExpression><![CDATA[$F{adresse_ville}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="60" width="114" height="20" uuid="dc23daa7-96df-4b8d-ae15-b3de7ebb4f63"/>
+				<textFieldExpression><![CDATA[$F{adresse_complement}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="82" width="186" height="1" uuid="a2f5d083-a518-4c33-9601-209d107eecde"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="114" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="42" height="20" uuid="a896a31f-03de-4d37-9d1d-d6ce90c32a95"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produit_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="0" width="100" height="20" uuid="cba320ef-104d-48d0-bcf0-cac64447913c"/>
+				<textFieldExpression><![CDATA[$F{produit_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="20" width="139" height="31" uuid="76c8008d-f730-4032-8e57-4fa31cf02f2b"/>
+				<textFieldExpression><![CDATA[$F{produit_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="61" width="31" height="20" uuid="140382ce-bace-4d35-ae75-9df16284435d"/>
+				<textFieldExpression><![CDATA[$F{detail_commande_quantite}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="61" width="40" height="20" uuid="d33d72e8-6577-4a13-9a48-87f03fe4669a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantite :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="61" width="39" height="20" uuid="d6d88d50-a8a4-4d95-a805-66092ae4298c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prix U :  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="61" width="39" height="20" uuid="0c120c13-5ee8-422c-a84c-7e9f8bf97b65"/>
+				<textFieldExpression><![CDATA[$F{detail_commande_prix_unitaire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="155" y="61" width="28" height="20" uuid="aa617c4f-864c-4bb2-839f-09c597189987"/>
+				<text><![CDATA[€]]></text>
+			</staticText>
+		</band>
+		<band height="17"/>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="3" y="10" width="186" height="1" uuid="290c366c-d537-4e84-845b-b9bd438d9615"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="107" splitType="Stretch">
+			<textField>
+				<reportElement x="109" y="33" width="57" height="20" uuid="0716fa53-511b-41d8-a54e-d58ec6384f2a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{commande_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="87" width="49" height="20" uuid="e5f02ac8-0c9e-4ba3-976b-b465cd4a182b"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Vendeur: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="87" width="49" height="20" uuid="5a3441e6-7555-4acd-a134-2ed9043d6aeb"/>
+				<textFieldExpression><![CDATA[$F{user_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="33" width="70" height="20" uuid="862d523c-fc0c-43ec-8f8b-def2885c97d9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="20" width="39" height="20" uuid="db0483c3-3f12-4603-b5c5-0e8573c7e945"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TVA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="20" width="46" height="20" uuid="63a159dd-8290-4c54-b5d2-e582c59e51d6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{taxe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="127" y="20" width="39" height="13" uuid="e5cd5f6d-eaf7-4999-a6c0-3ab6c1fef24b"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="87" width="100" height="20" uuid="ae7d7028-d0f1-4666-8cea-87ef7d2f8cf4"/>
+				<textFieldExpression><![CDATA[$F{user_prenom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="38" y="0" width="39" height="20" uuid="8edf51c3-089a-47e6-a6b2-a0860a6b919c"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Brut :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="64" height="20" uuid="86206c2b-a105-42ac-9dd6-67f50ab27413"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{commande_totalHt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="33" width="28" height="20" uuid="9843998d-15af-43c8-87d7-86d06e4246fd"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[€]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="0" width="28" height="20" uuid="66e3c852-c13f-4cec-9d85-24b1359f2752"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[€]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="55" width="182" height="8" uuid="e71469d9-5608-4a80-8221-4dfa54b6e455"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="79" width="182" height="8" uuid="e95313e3-cd4c-4535-8c6e-7925f6295423"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="63" width="81" height="16" uuid="01be599d-848d-49f0-988b-614ca49d5f3a"/>
+				<textFieldExpression><![CDATA[$F{commande_type_paiement}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="63" width="64" height="20" uuid="720301e6-8362-449a-b81a-e25f24a4217b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paiement :]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

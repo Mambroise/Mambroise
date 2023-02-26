@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RptVente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="deeb2c00-4521-4c66-b35b-1feee5f4e6cf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dateA" class="java.lang.String"/>
+	<parameter name="dateB" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     commande.`id_client` AS commande_id_client,
+     commande.`id_user` AS commande_id_user,
+     commande.`commentaire` AS commande_commentaire,
+     commande.`totalHt` AS commande_totalHt,
+     commande.`total` AS commande_total,
+     commande.`type_paiement` AS commande_type_paiement,
+     commande.`etat` AS commande_etat,
+     commande.`date_comm` AS commande_date_comm,
+     commande.`id` AS commande_id,
+     etablissement.`id` AS etablissement_id,
+     etablissement.`nom` AS etablissement_nom,
+     etablissement.`siret` AS etablissement_siret,
+     etablissement.`rue` AS etablissement_rue,
+     etablissement.`cod_postal` AS etablissement_cod_postal,
+     etablissement.`ville` AS etablissement_ville,
+     client.`id` AS client_id,
+     client.`nom` AS client_nom,
+     client.`prenom` AS client_prenom,
+     client.`numtel` AS client_numtel,
+     client.`statut` AS client_statut
+FROM
+     `client` client INNER JOIN `commande` commande ON client.`id` = commande.`id_client`,
+     `etablissement` etablissement
+WHERE DATE_FORMAT(commande.`date_comm`, '%Y-%m-%d') between $P{dateA} AND $P{dateB} ORDER BY commande.`date_comm` DESC]]>
+	</queryString>
+	<field name="commande_id_client" class="java.lang.Integer"/>
+	<field name="commande_id_user" class="java.lang.Integer"/>
+	<field name="commande_commentaire" class="java.lang.String"/>
+	<field name="commande_totalHt" class="java.lang.Double"/>
+	<field name="commande_total" class="java.lang.Double"/>
+	<field name="commande_type_paiement" class="java.lang.String"/>
+	<field name="commande_etat" class="java.lang.String"/>
+	<field name="commande_date_comm" class="java.sql.Timestamp"/>
+	<field name="commande_id" class="java.lang.Integer"/>
+	<field name="etablissement_id" class="java.lang.Integer"/>
+	<field name="etablissement_nom" class="java.lang.String"/>
+	<field name="etablissement_siret" class="java.lang.String"/>
+	<field name="etablissement_rue" class="java.lang.String"/>
+	<field name="etablissement_cod_postal" class="java.lang.String"/>
+	<field name="etablissement_ville" class="java.lang.String"/>
+	<field name="client_id" class="java.lang.Integer"/>
+	<field name="client_nom" class="java.lang.String"/>
+	<field name="client_prenom" class="java.lang.String"/>
+	<field name="client_numtel" class="java.lang.String"/>
+	<field name="client_statut" class="java.lang.String"/>
+	<variable name="somme1" class="java.lang.String"/>
+	<variable name="commande_total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{commande_total}]]></variableExpression>
+	</variable>
+	<variable name="commande_totalHt_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{commande_totalHt}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="228" height="45" uuid="b1777951-3dbc-4519-a3d1-52ce76db9c26"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Rapport des ventes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="47" width="100" height="20" uuid="20ced0c1-3d67-49ea-94e3-548209f979d9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[du :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="47" width="134" height="20" uuid="3c96a141-acee-4420-9873-a75360e4d5a0"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="47" width="100" height="20" uuid="e4c50670-850c-4d9a-b0f9-d74a44dd03ef"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[au :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="395" y="47" width="100" height="20" uuid="5a415d82-75e8-47ab-b6ca-8c364d199b5b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateB}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="72" width="550" height="1" uuid="49edf812-5323-4cb4-a837-4351a5e0d189"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="2" width="100" height="20" uuid="b2b48f16-ce89-4568-8018-b94955856fd7"/>
+				<text><![CDATA[N° Commande]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="0" width="100" height="20" uuid="af6bd494-1c26-4c02-8ea8-bfe2704bf2a4"/>
+				<text><![CDATA[Prix HT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="2" width="100" height="20" uuid="d0508edc-cba4-4fef-9ae1-329a093d4752"/>
+				<text><![CDATA[Prix TTC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="2" width="100" height="20" uuid="c50a510e-5b7b-4e50-8885-a22cb59492a2"/>
+				<text><![CDATA[Type de Paiement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="2" width="100" height="20" uuid="a849f682-5662-408f-a4f9-2741fb05bd34"/>
+				<text><![CDATA[Date de Commande]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="135" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="17" width="100" height="20" uuid="54988c3f-8087-4197-b3d9-644c55057d9f"/>
+				<textFieldExpression><![CDATA[$F{commande_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="17" width="45" height="20" uuid="6e2fbb2d-d1cd-48c8-8ddb-fd750873e040"/>
+				<textFieldExpression><![CDATA[$F{commande_totalHt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="17" width="100" height="20" uuid="3ffc4ef6-01cd-4892-af80-90f968b2a19f"/>
+				<textFieldExpression><![CDATA[$F{commande_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="369" y="17" width="74" height="20" uuid="3a2352c8-5557-4acb-b8c7-6f498590803c"/>
+				<textFieldExpression><![CDATA[$F{commande_type_paiement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="17" width="100" height="20" uuid="e329cb47-7992-498d-93b3-1c5a1d558fdd"/>
+				<textFieldExpression><![CDATA[$F{commande_date_comm}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="57" width="555" height="1" uuid="31939af6-b582-4b4f-a94c-013666709d39"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="17" width="31" height="20" uuid="ca87b28c-1b0c-4ebc-bbb7-bfa651590d54"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[€]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="17" width="31" height="20" uuid="599918ca-a08c-43d6-bde6-5c25fe3637df"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[€]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="5" width="198" height="40" uuid="4e755ad5-4e2e-4a10-9a49-843bf007f2b6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total des ventes :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="5" width="100" height="20" uuid="fa180ca6-a08b-430d-811d-ad1b102b1d87"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{commande_total_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="6" width="100" height="20" uuid="dd46dc36-b272-4f88-8f6e-67274728ddda"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[€]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

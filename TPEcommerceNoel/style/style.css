@@ -1,0 +1,104 @@
+button, #cart{
+    padding: 5px;
+    border-radius: 5px;
+}
+.balls{
+    position: relative;
+}
+.balls img{
+    width: 100%;
+}
+#titre{
+    position: absolute;
+    top: 40%;
+    left: 20%;
+}
+.container .row{
+    margin-top: 20px;
+}
+.card{
+    width: 19%;
+    margin: 0 30px;
+}
+.card img{
+    height: 200px;
+}
+.row{
+    justify-content: center;
+    gap: 20px;
+}
+.offcanvasHead img{
+    width: 100%;
+}
+.cartChoice{
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 0;
+    padding: 2px;
+}
+#totalPrice{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.cartDesi p{
+    width: 50%;
+}
+.cartDesi{
+    display: flex;
+    justify-content: space-between;
+}
+.cartDesi button{
+    height: 45px;
+    background: rgb(255, 58, 58);
+}
+/* ==========Formulaire==== */
+.formRow{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 1px solid grey;
+    background: rgb(239, 239, 253);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+#totalPrice strong, #cartPrice{
+    font-size: 2rem;
+}
+.right{
+    background: rgb(189, 253, 189);
+    border: 1px solid green;
+}
+.wrong{
+    color: red;
+    border: 1px solid red;
+    background: rgb(253, 182, 182);
+}
+.error{
+    color: red;
+    font-size: small;
+}
+#recapemail{
+    font-size: 11px;
+}
+#recapArt{
+    border-top: 1px solid rgb(214, 214, 214);
+}
+.recapRow{
+    width: 90%;
+    margin: auto;
+    border-bottom: 1px solid grey;
+}
+.recapTotal{
+    width: 90%;
+    margin: 5px auto;
+    border: 1px solid brown;
+    border-radius: 5px;
+    background: rgb(255, 170, 170);
+    color: brown;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.recapRow span:last-of-type{
+    margin-left: 20px;
+}
