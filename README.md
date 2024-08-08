@@ -1,4 +1,4 @@
-<img src=https://github.com/Mambroise/Mambroise/blob/main/Python%20Django%20JAVA%20Spring%20Boot%20ReactJs.png alt='profile banner' width =100%/>
+<img src=https://github.com/Mambroise/Mambroise/blob/main/Python%20Django%20JAVA%20Spring%20Boot%20ReactJs.png alt='profile banner' width =90%/>
 
 ## Hi there 👋
 
