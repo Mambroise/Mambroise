@@ -1,4 +1,4 @@
-<img src='https://github.com/Mambroise/Mambroise/blob/main/profile_banner.png' alt='profile banner' width =90%/>
+<img src='https://github.com/Mambroise/Mambroise/blob/main/Banner_Mambroise.png' alt='profile banner' width =90%/>
 
 ## Hi there 👋
 
