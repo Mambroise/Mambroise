@@ -1,6 +1,6 @@
 <img src='https://github.com/Mambroise/Mambroise/blob/main/Banner_Mambroise.png' alt='profile banner' width =90%/>
 
-## Howdie there!!!
+## Howdy folks!!!
 
 Développeur full stack au terme d'une reconversion professionnelle.
 Mon expérience de manager m'a entrainé et spécialisé dans la résolution de
